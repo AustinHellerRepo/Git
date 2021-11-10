@@ -51,14 +51,14 @@ class GitManager():
 		self.__git_directory_path = git_directory_path
 
 	@staticmethod
-	def __get_project_directory_name_from_git_url(*, git_url: str) -> str:
+	def get_project_name_from_git_url(*, git_url: str) -> str:
 		project_directory_name = git_url.split("/")[-1].split(".git")[0]
 		if project_directory_name == "":
 			raise Exception(f"Failed to find project name in git url: \"{git_url}\".")
 		return project_directory_name
 
 	def is_repository_cloned_locally(self, *, git_url: str) -> bool:
-		git_project_name = GitManager.__get_project_directory_name_from_git_url(
+		git_project_name = GitManager.get_project_name_from_git_url(
 			git_url=git_url
 		)
 		git_project_directory_path = Path(self.__git_directory_path, git_project_name)
@@ -69,7 +69,7 @@ class GitManager():
 			git_url=git_url
 		):
 			raise Exception(f"Failed to find existing local repository based on git url \"{git_url}\".")
-		git_project_name = GitManager.__get_project_directory_name_from_git_url(
+		git_project_name = GitManager.get_project_name_from_git_url(
 			git_url=git_url
 		)
 		git_project_directory_path = Path(self.__git_directory_path, git_project_name)
@@ -88,7 +88,7 @@ class GitManager():
 		# 	if the version is different from the git_url
 		#		clone from git_url
 
-		git_project_name = GitManager.__get_project_directory_name_from_git_url(
+		git_project_name = GitManager.get_project_name_from_git_url(
 			git_url=git_url
 		)
 		git_project_directory_path = Path(self.__git_directory_path, git_project_name)
