@@ -52,11 +52,11 @@ class GitManagerTest(unittest.TestCase):
 
 		git_url = "https://github.com/AustinHellerRepo/TestDeviceModule.git"
 
-		git_manager.clone(
+		git_local_repository_instance = git_manager.clone(
 			git_url=git_url
 		)
 
-		is_different = git_manager.is_remote_commit_different(
+		is_different = git_local_repository_instance.is_remote_commit_different(
 			git_url=git_url
 		)
 
@@ -77,11 +77,11 @@ class GitManagerTest(unittest.TestCase):
 
 		self.assertNotEqual(git_url_first, git_url_second)
 
-		git_manager.clone(
+		git_local_repository_instance = git_manager.clone(
 			git_url=git_url_first
 		)
 
-		is_different = git_manager.is_remote_commit_different(
+		is_different = git_local_repository_instance.is_remote_commit_different(
 			git_url=git_url_second
 		)
 
