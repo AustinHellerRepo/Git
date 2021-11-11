@@ -74,7 +74,7 @@ class GitManager():
 		)
 		git_project_directory_path = Path(self.__git_directory_path, git_project_name)
 		git_local_repository_instance = GitLocalRepositoryInstance(
-			directory_path=git_project_directory_path
+			directory_path=str(git_project_directory_path)
 		)
 		return git_local_repository_instance
 
@@ -94,10 +94,10 @@ class GitManager():
 		git_project_directory_path = Path(self.__git_directory_path, git_project_name)
 		if git_project_directory_path.exists():
 			git_project_directory_path.unlink()
-		Repo.clone_from(git_url, git_project_directory_path)
+		Repo.clone_from(git_url, str(git_project_directory_path))
 
 		git_local_repository_instance = GitLocalRepositoryInstance(
-			directory_path=git_project_directory_path
+			directory_path=str(git_project_directory_path)
 		)
 
 		return git_local_repository_instance
